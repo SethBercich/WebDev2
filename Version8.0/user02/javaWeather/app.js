@@ -9,6 +9,7 @@ const lowTempElement = document.querySelector(".temperature-value tr .low");
 const descElement = document.querySelector(".weather-desc p");
 const locationElement = document.querySelector(".weather-title p");
 const notificationElement = document.querySelector(".notification");
+const feelTempElement = document.querySelector(".feel-temp p")
 
 // App data
 const weather = {};
@@ -54,9 +55,10 @@ function getWeather(latitude, longitude){
             return data;
         })
         .then(function(data){
-            weather.temperature.current = Math.floor(data.main.temp - KELVIN);
-            weather.temperature.high = Math.floor(data.main.temp_max - KELVIN);
-            weather.temperature.low = Math.floor(data.main.temp_min - KELVIN);
+            weather.temperature.current = data.main.temp - KELVIN;
+            weather.temperature.high = data.main.temp_max - KELVIN;
+            weather.temperature.low = data.main.temp_min - KELVIN;
+            weather.temperature.feel = data.main.feels_like - KELVIN;
         
             weather.description = data.weather[0].description[0].toUpperCase() + data.weather[0].description.slice(1);
             weather.iconId = data.weather[0].icon;
@@ -78,10 +80,11 @@ function displayWeather(){
     lowTempElement.innerHTML = `${Math.floor(celsiusToFahrenheit(weather.temperature.low))}°<span>F</span>`;
     descElement.innerHTML = weather.description;
     locationElement.innerHTML = `${weather.city}, ${weather.country} Weather`;
+    feelTempElement.innerHTML =   `Feels like: ${Math.floor(celsiusToFahrenheit(weather.temperature.feel))}°<span>F</span>`;
     
     let avgTemp = Math.floor((Math.floor(celsiusToFahrenheit(weather.temperature.high)) + Math.floor(celsiusToFahrenheit(weather.temperature.low)))/2)
     
-    if(Math.floor(celsiusToFahrenheit(weather.temperature.current)) >= avgTemp){
+    if(Math.floor(celsiusToFahrenheit(weather.temperature.current)) > avgTemp){
         tempElement.style.backgroundColor= '#de0000'; //If the temp is in the high FOR THE DAY
     }else{
         tempElement.style.backgroundColor= '#73d0ff'; //If the temp is in the low for the day.
