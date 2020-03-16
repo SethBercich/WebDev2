@@ -1,0 +1,167 @@
+body {
+    font-family: "Georgia";
+    color: #ffffff;
+    padding-top: 0px;
+    background-repeat: repeat-y;
+    background-size: 100%;
+}
+
+.bodyStuff {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.help-block {
+    color:red;
+    font-weight: bold;
+}
+
+h1 {
+    font-family: fantasy;
+    font-size: 3em;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    border-bottom: 2px solid #000000;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    padding-bottom: 5px;
+}
+
+h6 {
+    font-size: 3em;
+    align-self: center;
+    text-align: center;
+}
+
+p {
+    font-size: 1.3em;
+}
+
+.menu {
+    font-size: 1.2em;
+    font-family: sans-serif;
+}
+
+.menuButton {
+    background-color: #DDDDDD;
+    border-radius: 5px;
+    width: 70px;
+}
+
+#footer {
+    margin-top: 50px;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
+table {
+    margin: 0px;
+    width: 100%;
+}
+
+.music tr {
+    color: white;
+    background-color: darkblue;
+    border: 2px solid #ffffff;
+}
+
+.music tr:nth-child(2n) {
+    background-color: royalblue;
+}
+
+.music td,
+.music th {
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+}
+
+.contact thead {
+    text-align: center;
+    font-size: 2em;
+}
+.contact tr{
+    text-align: center;
+}
+
+.tw {
+    background-color: #47acff;
+}
+
+.fb {
+    background-color: #025ddb;
+}
+
+.yt {
+    background-color: #ff0022;
+}
+
+.em {
+    background-color: #737373;
+}
+
+dt {
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-weight: bold;
+    font-size: 1.8em;
+    line-height: 1.1em;
+    padding: 10px;
+    border-bottom: 1px solid #c5c5c5;
+    border-top: 1px solid white;
+}
+
+dd, dd p {
+    font-size: 1.2em;
+}
+
+.loginHolder{
+    background-color: darkblue;
+    border-radius: 20px;
+    width: 60%;
+    text-align: left;
+    padding: 8px;
+    padding-bottom: 28px;
+}
+
+#loginButton{
+    width: 90%;
+    margin-top: 20px;
+    height: 60px;
+    font-family: 'impact';
+    font-size: 1.8em;
+    border-radius: 5px;
+}
+
+.dropBar {
+    border: 1px solid #DDDDDD;
+    border-top: 0px;
+    padding 8px;
+    padding-top: 8px;
+    padding-bottom: 2px;
+    margin-left: 20px;
+    width: 95%;
+    vertical-align: middle;   
+}
+
+.topBar {
+    border: 2px solid #999999;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: gray;
+    width: 95%;
+    margin: 20px;
+    margin-bottom: 0px;
+    padding: 8px;
+    padding-bottom: 2px;
+    font-size: 1.8em;
+}
