@@ -11,8 +11,17 @@ const locationElement = document.querySelector(".weather-title p");
 const notificationElement = document.querySelector(".notification");
 const feelTempElement = document.querySelector(".feel-temp p")
 
+const robloxUsername = document.querySelector(".roblox-user")
+const robloxId = document.querySelector(".roblox-id")
+const robloxTitle = document.querySelector(".roblox-title")
+const robloxPic = document.querySelector(".roblox-icon")
+const robloxGroupList = document.querySelector(".roblox-groups")
+const robloxInput = document.querySelector("#UserNameEnter")
+
 // App data
 const weather = {};
+
+const robloxInf = {};
 
 weather.temperature = {
     unit : "fahrenheit"
@@ -73,7 +82,7 @@ function getWeather(latitude, longitude){
 
 // DISPLAY WEATHER TO UI
 function displayWeather(){
-    iconElement.innerHTML = `<img src="icons/${weather.iconId}.png"/>`;
+    iconElement.innerHTML = `<img src="images/icons/${weather.iconId}.png"/>`;
     //tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`; //Celcius
     tempElement.innerHTML = `${Math.floor(celsiusToFahrenheit(weather.temperature.current))}°<span>F</span>`; //Fahrenheit
     highTempElement.innerHTML = `${Math.floor(celsiusToFahrenheit(weather.temperature.high))}°<span>F</span>`;
@@ -113,3 +122,33 @@ tempElement.addEventListener("click", function(){
     }
 });
 
+function getRoblox(){
+    userNameInput = 
+    let nameApi = "api.roblox.com/users/get-by-username?username=" + userNameInput;
+    fetch(nameApi)
+        .then(function(response){
+            let rbxData = response.json();
+            return rbxData;
+        })
+        .then(function(data){
+            robloxInf.user.Name = data.Username;
+            robloxInf.user.Id = data.Id;
+            console.log(data);
+        })
+        .then(function(display){
+            robloxUsername.innerHTML = robloxInf.user.Name
+            robloxId.innerHTML = robloxInf.user.Id
+    })
+    
+    ```let groupApi = "api.roblox.com/users/" + robloxInf.user.Id + "/groups";
+    fetch(groupApi)
+        .then(function(response){
+            let groupData = response.json();
+            return groupData;
+        })
+        .then(function(data){
+            
+    })
+```    
+        
+}

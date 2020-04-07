@@ -7,10 +7,34 @@
             <a id="faq" href="faq.php" class="nav-item nav-link">FAQ</a>
             <a id="api" href="api.php" class="nav-item nav-link">API Info</a>
             <a href="index.php" class="nav-item nav-link">Log-Out</a>
+            <a id="delete" href="deleteUser.php" class="nav-item nav-link">Delete Account</a>
         </div>
 `);
 
- //document.getElementById("footer").innerHTML = (`<p>Made by <a href='https://www.google.com/' target="_blank">Seth Bercich</a> in Web Development</p> <p>Thank you <?php echo htmlspecialchars($_SESSION["name"]); ?>, for looking around!</p>`)
+ document.getElementById("footer").innerHTML = (
+     `<div class='row'>
+            <div class='foot col-md-4 center'>
+                <h3>About Me</h3>
+                <p>My name is Seth Bercich and I created this webpage in Web Development. This is my final project to show off all that i've learned
+                this year.</p>
+            </div>
+            <div class='foot col-md-3 center'>
+                <h3>API Used</h3>
+                <ul style='font-size:1.3em;'>
+                    <li style='text-align:left;'>Open Weather Map</li>
+                </ul>
+            </div>
+            <div class='foot col-md-3 center'>
+                <h3>Different Page Elements</h3>
+                <ul style='font-size:1.3em;'>
+                    <li style='text-align:left;'>PHP</li>
+                    <li style='text-align:left;'>HTML</li>
+                    <li style='text-align:left;'>CSS</li>
+                    <li style='text-align:left;'>Java Script</li>
+                    <li style='text-align:left;'>SQL</li>
+                </ul>
+            </div>
+        </div>`)
 
  var space = " ";
  var pos = 0;
@@ -130,3 +154,8 @@
      
 
  })
+
+function confimed() {
+    document.location.href = "deleteUser.php";
+    console.log('Sending!')
+}

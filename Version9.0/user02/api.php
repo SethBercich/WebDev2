@@ -18,6 +18,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <link rel="stylesheet" href="CSS/user02CSS.css">
 
     <style>
+        body {
+            background-image: url(images/apiBg.jpg);
+        }
+        
         #container {
             width: 400px;
             background-color: #ff8e38;
@@ -49,7 +53,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         }
 
         .weather-icon {
-            width: 300px;
+            width: 100%;
             height: 128px;
         }
 
@@ -117,8 +121,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <h1>API Information</h1>
 
     <div class='row'>
-        <div class='col-md-6'>
-
+        <div class='col-md-6 center'>
             <div id="container">
                 <div class="weather-title">
                     <p>CITY weather</p>
@@ -128,7 +131,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
                 <div class="weatherContainer">
                     <div class="weather-icon">
-                        <img src="icons/unknown.png" alt="">
+                        <img src="images/icons/unknown.png" alt="Unknown">
                     </div>
 
                     <div class="weather-desc">
@@ -152,6 +155,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <p>Feels Like</p>
                     </div>
 
+                </div>
+            </div>
+        </div>
+        <div class='col-md-6 center'>
+            <div id="container">
+                <input id='userNameEnter' type='text' placeholder="Enter a Roblox username"><span><button onclick="getRoblox()">Submit</button></span>
+                <h3 class='roblox-title'>PLAYERS Roblox Account!</h3>
+                <br>
+                <div class='roblox-icon'>
+                </div>
+                <div class='roblox-info'>
+                    <div class='roblox-user'>PLAYER NAME</div><br>
+                    <div class='roblox-id'>PLAYER ID</div><br>
+                    <ul class='roblox-groups'>
+                    </ul>
                 </div>
             </div>
         </div>

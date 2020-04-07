@@ -2,18 +2,18 @@
 require_once "./config/config.php";
 session_start();
 
-$_SESSION["loggedin"] = false;
+$_SESSION["loggedin"] = false; //Yea
 $_SESSION["id"] = '';
 $_SESSION["name"] = '';
 $_SESSION["personType"] = '';
 
 $noErrors = true;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form    	
+if($_SERVER["REQUEST_METHOD"] == "POST"){//Check it is coming from a form    	
 	//delcare PHP variables
 	$firstName = $_POST["name"];
     $personType = $_POST["personType"];
-	$postButton = $_POST["Submit"];
+	$postButton = $_POST["submit"]; 
     $userError = $typeError = "";
     
     if($link === false){
@@ -32,17 +32,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
     
     if($noErrors) { //If there are no errors
     $sql = "INSERT INTO login (username, personType) VALUES (?, ?)";
+    //$sql = "SELECT id FROM login WHERE username = ?";
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
         mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_personType);
         
         $param_username = trim($firstName);
         $param_personType = trim($personType);
-        mysqli_stmt_execute($stmt);
         
-        session_start();
+        if(mysqli_stmt_execute($stmt)){
+            //mysqli_stmt_store_result($stmt); // Well it doesnt work anymore 
+            echo "Success!";
+            
+            //if(mysqli_stmt_num_rows($stmt) > 0){ //It was supposed to get all of the id where username = ?, which means it would get 1 if it exists
+                //$sql2 = "UPDATE login SET login.personType='$param_personType' WHERE login.username='$param_username'";
+                //if ($link->query($sql2) === TRUE) { // Yea
+                  //  echo "Record updated successfully";
+                //} else {
+                  //  die("ERROR, NOT RIGHT: $sql2");
+                //}
+            }
+        }
+        
         $_SESSION["loggedin"] = true;
-        $_SESSION["id"] = $id;
+        //$_SESSION["id"] = $id; // This doesnt work
         $_SESSION["name"] = $param_username;
         $_SESSION["personType"] = $param_personType;
 
@@ -50,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
         console.log('Success!');
         </script>";
         
-        header("location: home.php");
+        header("location: home.php"); //Since the session variables are set, the stmt is executing, supposively
     } else{
         echo "<script>
         console.log('Failed!');
@@ -60,9 +73,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
     }
         
         mysqli_stmt_close($stmt); //Close statement
+        mysqli_close($link); //Close connection
     }
-    mysqli_close($link); //Close connection
-}  
 ?>
 
 <html>
@@ -92,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($userError)) ? 'has-error' : ''; ?>">
                 <label>Your name:</label>
-                <input type="text" name="name" class="form-control" value="<?php echo $username; ?>" />
+                <input type="text" name="name" class="form-control" value="<?php echo $firstName; ?>" />
                 <p class="help-block"><?php echo $userError; ?></p>
             </div>
 
@@ -108,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {//Check it is coming from a form
             </div>
 
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
+                <input name="submit" type="submit" class="btn btn-primary" value="Submit">
             </div>
         </form>
     </div>
